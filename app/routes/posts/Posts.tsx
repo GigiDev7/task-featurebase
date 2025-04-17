@@ -9,7 +9,7 @@ export default function Posts() {
     (async () => {
       const { data, error } = await supabase.auth.getUser();
 
-      if (error) {
+      if (error || !data.user) {
         navigate("/signin");
         return;
       }
