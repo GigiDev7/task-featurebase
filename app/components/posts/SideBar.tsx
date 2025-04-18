@@ -26,8 +26,8 @@ const SideBar = () => {
   }
 
   return (
-    <div className="w-1/6 border-[1px] border-gray-300 h-full">
-      <h2 className="font-bold text-xl p-6">Feedback</h2>
+    <div className="bg-white w-1/6 hidden md:inline-block border-[1px] border-gray-300 h-full rounded-l-md">
+      <h2 className="font-bold text-xl p-[30px]">Feedback</h2>
 
       <div className="border-t-[1px] border-gray-300 p-6 flex flex-col gap-2">
         <span className="text-sm text-gray-700">Statuses</span>
@@ -205,16 +205,18 @@ const SideBar = () => {
               Boards
             </button>
 
-            {isBoardsOpen && (
-              <div className="ml-6 mt-1">
-                <button
-                  onClick={() => setFilters("board", "Feature-Request")}
-                  className="flex items-center text-sm cursor-pointer gap-1"
-                >
-                  Feature Request
-                </button>
-              </div>
-            )}
+            <div
+              className={`ml-6 mt-1 transition-all duration-500 overflow-hidden ${
+                isBoardsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <button
+                onClick={() => setFilters("board", "Feature-Request")}
+                className="flex items-center text-sm cursor-pointer gap-1"
+              >
+                Feature Request
+              </button>
+            </div>
           </div>
 
           <div>
@@ -239,22 +241,24 @@ const SideBar = () => {
               Tags
             </button>
 
-            {isTagsOpen && (
-              <div className="ml-6 mt-1 flex flex-col gap-1">
-                <button
-                  onClick={() => setFilters("tag", "High")}
-                  className="flex items-center text-sm cursor-pointer gap-1"
-                >
-                  High Priority
-                </button>
-                <button
-                  onClick={() => setFilters("tag", "Low")}
-                  className="flex items-center text-sm cursor-pointer gap-1"
-                >
-                  Low Priority
-                </button>
-              </div>
-            )}
+            <div
+              className={`ml-6 mt-1 flex flex-col gap-1 transition-all duration-500 overflow-hidden ${
+                isTagsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <button
+                onClick={() => setFilters("tag", "High")}
+                className="flex items-center text-sm cursor-pointer gap-1"
+              >
+                High Priority
+              </button>
+              <button
+                onClick={() => setFilters("tag", "Low")}
+                className="flex items-center text-sm cursor-pointer gap-1"
+              >
+                Low Priority
+              </button>
+            </div>
           </div>
         </div>
       </div>
