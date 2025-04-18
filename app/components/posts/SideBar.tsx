@@ -19,21 +19,9 @@ const SideBar = () => {
     setSearchParams({});
   }
 
-  function setStatusFilter(status: string) {
+  function setFilters(filterKey: string, filterValue: string) {
     const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("status", status);
-    setSearchParams(newParams);
-  }
-
-  function setBoardFilter(board: string) {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("board", board);
-    setSearchParams(newParams);
-  }
-
-  function setTagFilter(tag: string) {
-    const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("tag", tag);
+    newParams.set(filterKey, filterValue);
     setSearchParams(newParams);
   }
 
@@ -46,7 +34,7 @@ const SideBar = () => {
 
         <div className="mt-2">
           <button
-            onClick={() => setStatusFilter("UnderReview")}
+            onClick={() => setFilters("status", "Under-Review")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -71,7 +59,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setStatusFilter("Planned")}
+            onClick={() => setFilters("status", "Planned")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -103,7 +91,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setStatusFilter("Active")}
+            onClick={() => setFilters("status", "Active")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -130,7 +118,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setStatusFilter("Done")}
+            onClick={() => setFilters("status", "Done")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -152,7 +140,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setStatusFilter("Closed")}
+            onClick={() => setFilters("status", "Closed")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -220,7 +208,7 @@ const SideBar = () => {
             {isBoardsOpen && (
               <div className="ml-6 mt-1">
                 <button
-                  onClick={() => setBoardFilter("Feature-Request")}
+                  onClick={() => setFilters("board", "Feature-Request")}
                   className="flex items-center text-sm cursor-pointer gap-1"
                 >
                   Feature Request
@@ -254,13 +242,13 @@ const SideBar = () => {
             {isTagsOpen && (
               <div className="ml-6 mt-1 flex flex-col gap-1">
                 <button
-                  onClick={() => setTagFilter("High")}
+                  onClick={() => setFilters("tag", "High")}
                   className="flex items-center text-sm cursor-pointer gap-1"
                 >
                   High Priority
                 </button>
                 <button
-                  onClick={() => setTagFilter("Low")}
+                  onClick={() => setFilters("tag", "Low")}
                   className="flex items-center text-sm cursor-pointer gap-1"
                 >
                   Low Priority
