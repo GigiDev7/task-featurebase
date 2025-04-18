@@ -34,6 +34,16 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
       </div>
 
       <div className="flex gap-16 items-center">
+        {post.tag && (
+          <button
+            className={`border-gray-300 border-[1px] rounded-md py-1 px-3 cursor-pointer hover:bg-gray-100 ${
+              post.tag === "High Priority" ? "text-red-500" : "text-blue-500"
+            }`}
+          >
+            {post.tag}
+          </button>
+        )}
+
         <div className="flex items-center gap-6">
           <span className="text-gray-700 relative group">
             {formatted}.

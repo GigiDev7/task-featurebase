@@ -24,12 +24,17 @@ export default function Posts() {
         navigate("/signin");
         return;
       }
+    })();
+  }, []);
 
+  useEffect(() => {
+    (async () => {
       let query = supabase.from("posts").select("*, createdBy (*)");
 
       const status = searchParams.get("status");
       const board = searchParams.get("board");
       const tag = searchParams.get("tag");
+      const q = searchParams.get("q");
 
       if (status) {
         query = query.eq("status", status);
@@ -39,6 +44,9 @@ export default function Posts() {
       }
       if (tag) {
         query = query.eq("tag", tag);
+      }
+      if (q) {
+        query = query.ilike("title", `%${q}%`);
       }
 
       setLoading(true);
