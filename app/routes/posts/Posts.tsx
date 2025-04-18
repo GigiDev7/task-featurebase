@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import supabase from "~/utils/supabase";
 import { useNavigate } from "react-router";
+import SideBar from "~/components/posts/SideBar";
 
 export default function Posts() {
   const navigate = useNavigate();
@@ -17,8 +18,8 @@ export default function Posts() {
   }, []);
 
   return (
-    <div>
-      <h1>Hello world!</h1>
+    <div className="p-2 h-dvh">
+      <SideBar />
     </div>
   );
 }
