@@ -1,8 +1,14 @@
-const Header = () => {
+import type { FC } from "react";
+
+type Props = {
+  totalPosts: number;
+};
+
+const Header: FC<Props> = ({ totalPosts }) => {
   return (
     <div className="p-6 border-b-[1px] border-gray-300 flex items-center justify-between">
       <h2 className="font-bold text-xl">
-        Posts <span className="text-gray-600">(0)</span>
+        Posts <span className="text-gray-600">({totalPosts})</span>
       </h2>
 
       <div className="flex gap-6">
