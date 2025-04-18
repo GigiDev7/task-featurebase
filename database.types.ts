@@ -27,7 +27,7 @@ export type Database = {
           assignee?: string | null
           board?: string | null
           created_at?: string
-          createdBy?: string
+          createdBy: string
           description?: string | null
           eta?: string | null
           id?: string
@@ -48,6 +48,39 @@ export type Database = {
           status?: string | null
           tag?: string | null
           title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_assignee_fkey1"
+            columns: ["assignee"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_createdBy_fkey"
+            columns: ["createdBy"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
         }
         Relationships: []
       }

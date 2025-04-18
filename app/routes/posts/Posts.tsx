@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import SideBar from "~/components/posts/SideBar";
 import Content from "~/components/posts/Content";
 import type { PostgrestError } from "@supabase/supabase-js";
-import type { Database } from "database.types";
 import type { Post } from "~/utils/types";
 
 export default function Posts() {
@@ -23,7 +22,9 @@ export default function Posts() {
         return;
       }
 
-      const { data, error, count } = await supabase.from("posts").select();
+      const { data, error, count } = await supabase
+        .from("posts")
+        .select("*, createdBy (*)");
 
       if (error) {
         setError(error);
@@ -34,8 +35,6 @@ export default function Posts() {
       }
     })();
   }, []);
-
-  console.log(posts);
 
   return (
     <div className="p-2 h-dvh flex bg-gray-100">
