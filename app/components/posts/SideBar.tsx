@@ -34,7 +34,7 @@ const SideBar = () => {
 
         <div className="mt-2">
           <button
-            onClick={() => setFilters("status", "Under-Review")}
+            onClick={() => setFilters("status", "In Review")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -91,7 +91,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setFilters("status", "Active")}
+            onClick={() => setFilters("status", "In Progress")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -118,7 +118,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setFilters("status", "Done")}
+            onClick={() => setFilters("status", "Completed")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -140,7 +140,7 @@ const SideBar = () => {
 
         <div>
           <button
-            onClick={() => setFilters("status", "Closed")}
+            onClick={() => setFilters("status", "Rejected")}
             className="flex items-center text-sm cursor-pointer"
           >
             <svg
@@ -211,7 +211,7 @@ const SideBar = () => {
               }`}
             >
               <button
-                onClick={() => setFilters("board", "Feature-Request")}
+                onClick={() => setFilters("board", "Feature Request")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 Feature Request
@@ -247,13 +247,13 @@ const SideBar = () => {
               }`}
             >
               <button
-                onClick={() => setFilters("tag", "High")}
+                onClick={() => setFilters("tag", "High Priority")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 High Priority
               </button>
               <button
-                onClick={() => setFilters("tag", "Low")}
+                onClick={() => setFilters("tag", "Low Priority")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 Low Priority
