@@ -18,8 +18,8 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
   // Close search input if the query param is removed
   useEffect(() => {
     const q = searchParams.get("q");
+    clearTimeout(timeoutRef.current);
     if (!q) {
-      clearTimeout(timeoutRef.current);
       setInput("");
       setIsSearchInputVisible(false);
     }

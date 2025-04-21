@@ -2,6 +2,9 @@ import type { AuthError } from "@supabase/supabase-js";
 import { useRef, useState, type FC } from "react";
 import { Link, useNavigate } from "react-router";
 import { signIn, signUp } from "~/api/auth/api";
+import FormField from "../UI/FormField";
+import Input from "../UI/Input";
+import Button from "../UI/Button";
 
 type Props = {
   authType: "Login" | "Register";
@@ -53,37 +56,25 @@ const Form: FC<Props> = ({ authType }) => {
       <h2 className="text-center">{authType}</h2>
       {error && <span className="text-red-500">{error}</span>}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-3">
+        <FormField>
           <label htmlFor="email">Email</label>
-          <input
-            ref={emailRef}
-            className="border-black border-[1px] px-1 outline-0 rounded-xs"
-            id="email"
-            type="email"
-            name="email"
-            required
-          />
-        </div>
+          <Input ref={emailRef} id="email" type="email" name="email" required />
+        </FormField>
 
-        <div className="flex flex-col gap-3">
+        <FormField>
           <label htmlFor="password">Password</label>
-          <input
+          <Input
             ref={passwordRef}
-            className="border-black border-[1px] px-1 outline-0 rounded-xs"
             id="password"
             type="password"
             name="password"
             required
           />
-        </div>
+        </FormField>
 
-        <button
-          disabled={loading}
-          type="submit"
-          className="bg-blue-500 cursor-pointer hover:bg-blue-600 text-white rounded-md py-2 w-full"
-        >
+        <Button disabled={loading} type="submit">
           {loading ? "Loading..." : authType}
-        </button>
+        </Button>
       </form>
 
       {authType === "Register" ? (
