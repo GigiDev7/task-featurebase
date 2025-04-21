@@ -17,12 +17,12 @@ export default function Posts() {
     (async () => {
       const { data, error } = await supabase.auth.getUser();
 
-      if (error || !data.user) {
+      if (error || !data.user || !data.user.email) {
         navigate("/signin");
         return;
       }
 
-      updateUser({ email: data.user.email!, id: data.user.id });
+      updateUser({ email: data.user.email, id: data.user.id });
     })();
   }, []);
 
