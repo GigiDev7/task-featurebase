@@ -91,9 +91,9 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
               className="w-3.5 h-3.5 secondary-svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           ) : (
@@ -105,9 +105,9 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
               className="w-3.5 h-3.5 secondary-svg"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               ></path>
             </svg>
           )}
@@ -122,9 +122,9 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
             className="w-4 h-4 mr-1 secondary-svg"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
           Filters
@@ -146,9 +146,9 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
             className="w-4 h-4 mr-1"
           >
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>{" "}
           Create Post

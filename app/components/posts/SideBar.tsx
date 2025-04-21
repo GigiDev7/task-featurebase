@@ -48,9 +48,9 @@ const SideBar = () => {
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
                 opacity="0.6"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
               ></circle>
             </svg>{" "}
             Under Review
@@ -80,9 +80,9 @@ const SideBar = () => {
                 cy="12"
                 r="10"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
                 opacity="0.5"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
               ></circle>
             </svg>
             Planned
@@ -101,8 +101,8 @@ const SideBar = () => {
               className="!h-[18px] !w-[18px] ml-0 mr-2 text-sky-600 dark:text-sky-600"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M12 3.75C7.44365 3.75 3.75 7.44365 3.75 12C3.75 16.5563 7.44365 20.25 12 20.25C16.5563 20.25 20.25 16.5563 20.25 12C20.25 7.44365 16.5563 3.75 12 3.75ZM2.25 12C2.25 6.61522 6.61522 2.25 12 2.25C17.3848 2.25 21.75 6.61522 21.75 12C21.75 17.3848 17.3848 21.75 12 21.75C6.61522 21.75 2.25 17.3848 2.25 12Z"
                 fill="currentColor"
               ></path>
@@ -128,8 +128,8 @@ const SideBar = () => {
               className="!h-4 !w-4 ml-px mr-2 text-emerald-600 dark:text-emerald-600"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M11.75 22.5C5.81294 22.5 1 17.6871 1 11.75C1 5.81294 5.81294 1 11.75 1C17.6871 1 22.5 5.81294 22.5 11.75C22.5 17.6871 17.6871 22.5 11.75 22.5ZM16.5182 9.39018C16.8718 8.9659 16.8145 8.33534 16.3902 7.98177C15.9659 7.62821 15.3353 7.68553 14.9818 8.10981L10.6828 13.2686L8.45711 11.0429C8.06658 10.6524 7.43342 10.6524 7.04289 11.0429C6.65237 11.4334 6.65237 12.0666 7.04289 12.4571L10.0429 15.4571C10.2416 15.6558 10.5146 15.7617 10.7953 15.749C11.076 15.7362 11.3384 15.606 11.5182 15.3902L16.5182 9.39018Z"
                 fill="currentColor"
               ></path>
@@ -150,8 +150,8 @@ const SideBar = () => {
               className="!h-4 !w-4 ml-px mr-2 text-gray-300/70 dark:text-gray-300/60"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM16.2072 9.20718L13.4143 12.0001L16.2072 14.793L14.793 16.2072L12.0001 13.4143L9.20718 16.2072L7.79297 14.793L10.5859 12.0001L7.79297 9.20718L9.20718 7.79297L12.0001 10.5859L14.793 7.79297L16.2072 9.20718Z"
                 fill="currentColor"
               ></path>
@@ -213,9 +213,9 @@ const SideBar = () => {
                 }`}
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
@@ -248,9 +248,9 @@ const SideBar = () => {
                 height={16}
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.5 2A2.5 2.5 0 0 0 2 4.5v3.879a2.5 2.5 0 0 0 .732 1.767l7.5 7.5a2.5 2.5 0 0 0 3.536 0l3.878-3.878a2.5 2.5 0 0 0 0-3.536l-7.5-7.5A2.5 2.5 0 0 0 8.38 2H4.5ZM5 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               Tags
@@ -264,9 +264,9 @@ const SideBar = () => {
                 }`}
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
