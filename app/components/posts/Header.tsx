@@ -1,4 +1,5 @@
-import { useEffect, useState, type FC } from "react";
+import { clear } from "console";
+import { useEffect, useRef, useState, type FC } from "react";
 import { useSearchParams } from "react-router";
 
 type Props = {
@@ -11,37 +12,36 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [input, setInput] = useState(searchParams.get("q") || "");
-  const [debouncedInput, setDebouncedInput] = useState(input);
+
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   // Close search input if the query param is removed
   useEffect(() => {
     const q = searchParams.get("q");
     if (!q) {
+      clearTimeout(timeoutRef.current);
       setInput("");
       setIsSearchInputVisible(false);
     }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [searchParams]);
 
-  // Debounce the input value
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedInput(input);
-    }, 500);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
 
-    return () => clearTimeout(handler);
-  }, [input]);
-
-  useEffect(() => {
-    if (debouncedInput) {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       const newParams = new URLSearchParams(searchParams.toString());
-      newParams.set("q", debouncedInput);
+      value ? newParams.set("q", value) : newParams.delete("q");
       setSearchParams(newParams);
-    } else {
-      const newParams = new URLSearchParams(searchParams.toString());
-      newParams.delete("q");
-      setSearchParams(newParams);
-    }
-  }, [debouncedInput]);
+    }, 700);
+  };
 
   function toggleSearchInput() {
     setIsSearchInputVisible((prevState) => {
@@ -71,7 +71,7 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
         >
           <input
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => handleChange(e)}
             type="text"
             placeholder="Search for posts"
             className="w-full h-10 px-2 rounded border border-gray-300 bg-white text-black focus:outline-none"
