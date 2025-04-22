@@ -1,5 +1,5 @@
 import { useState, type FC } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { usePostContext } from "~/context/postContext";
 import supabase from "~/utils/supabase";
 import type { Post } from "~/utils/types";
@@ -23,6 +23,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
   const [openReview, setOpenReview] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { setError, setLoading, fetchPosts } = usePostContext();
+  const navigate = useNavigate();
 
   const statusClass: Record<string, string> = {
     Completed: "bg-green-300 text-green-600 hover:bg-green-400",
@@ -32,7 +33,10 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
     "In Progress": "hover:bg-blue-400  bg-blue-300  text-blue-600",
   };
 
-  function toggleOpenReview() {
+  function toggleOpenReview(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.stopPropagation();
     setOpenReview((prevState) => !prevState);
   }
 
@@ -66,7 +70,8 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
 
   return (
     <div
-      className={`flex justify-between items-center py-4 px-6 ${
+      onClick={() => navigate(`/${post.id}`)}
+      className={`flex justify-between items-center py-4 px-6 cursor-pointer ${
         !isLast && "border-b-[1px] border-gray-300"
       }`}
     >
@@ -101,7 +106,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
 
         <div className="relative w-32">
           <button
-            onClick={toggleOpenReview}
+            onClick={(e) => toggleOpenReview(e)}
             className={`cursor-pointer rounded-md px-3 py-1  ${
               statusClass[post.status ?? ""] ??
               "hover:bg-blue-400  bg-blue-300  text-blue-600"

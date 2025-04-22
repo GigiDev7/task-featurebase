@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import supabase from "~/utils/supabase";
-import { useNavigate, useSearchParams } from "react-router";
+import { Outlet, useNavigate, useSearchParams } from "react-router";
 import SideBar from "~/components/posts/SideBar";
 import Content from "~/components/posts/Content";
 import { useUserContext } from "~/context/userContext";
@@ -30,6 +30,8 @@ export default function Posts() {
     <div className="p-2 h-dvh flex bg-gray-100">
       <SideBar />
       <Content />
+
+      <Outlet />
 
       {showSuccessFeedback &&
         createPortal(
