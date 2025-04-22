@@ -1,16 +1,18 @@
 import { useState, type FC } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { usePostContext } from "~/context/postContext";
 import supabase from "~/utils/supabase";
 import type { Post } from "~/utils/types";
+import Button from "../UI/Button";
 
 type Props = {
   post: Post;
   isLast: boolean;
 };
 
-const options = { month: "short", day: "numeric" };
-const optionsLong = {
+const options: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+
+const optionsLong: Intl.DateTimeFormatOptions = {
   month: "2-digit",
   day: "2-digit",
   year: "numeric",
@@ -42,8 +44,8 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
 
   const date = new Date(post.created_at);
 
-  const formatted = date.toLocaleDateString("en-US", options as any);
-  const formattedLong = date.toLocaleString("en-US", optionsLong as any);
+  const formatted = date.toLocaleDateString("en-US", options);
+  const formattedLong = date.toLocaleString("en-US", optionsLong);
 
   const statuses = [
     "Planned",
@@ -69,8 +71,8 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
   }
 
   return (
-    <div
-      onClick={() => navigate(`/${post.id}`)}
+    <Link
+      to={`/${post.id}`}
       className={`flex justify-between items-center py-4 px-6 cursor-pointer ${
         !isLast && "border-b-[1px] border-gray-300"
       }`}
@@ -105,7 +107,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
         </div>
 
         <div className="relative w-32">
-          <button
+          <Button
             onClick={(e) => toggleOpenReview(e)}
             className={`cursor-pointer rounded-md px-3 py-1  ${
               statusClass[post.status ?? ""] ??
@@ -113,7 +115,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
             }`}
           >
             {post.status}
-          </button>
+          </Button>
 
           {openReview && (
             <div className="w-28 absolute flex flex-col gap-3 items-start bg-white z-50 top-10 rounded-md border-[1px] border-gray-300 py-3">
@@ -130,7 +132,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
