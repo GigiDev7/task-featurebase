@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type FC } from "react";
 import { useSearchParams } from "react-router";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
 
 type Props = {
   totalPosts: number;
@@ -68,7 +70,7 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
           ${isSearchInputVisible ? "w-40 opacity-100 " : "w-0 opacity-0 mr-0"}
         `}
         >
-          <input
+          <Input
             value={input}
             onChange={(e) => handleChange(e)}
             type="text"
@@ -77,7 +79,7 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
           />
         </div>
 
-        <button
+        <Button
           onClick={toggleSearchInput}
           className="flex items-center border-gray-300 border-[1px] rounded-md p-3 cursor-pointer hover:bg-gray-100"
         >
@@ -110,7 +112,7 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
               ></path>
             </svg>
           )}
-        </button>
+        </Button>
 
         <button className="flex items-center border-gray-300 border-[1px] rounded-md px-3 cursor-pointer hover:bg-gray-100">
           <svg
@@ -129,11 +131,11 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
           Filters
         </button>
 
-        <button className="flex items-center border-gray-300 border-[1px] rounded-md px-3 cursor-pointer hover:bg-gray-100">
+        <Button className="flex items-center border-gray-300 border-[1px] rounded-md px-3 cursor-pointer hover:bg-gray-100">
           Recent posts
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={onCreatePost}
           className="flex items-center px-3 cursor-pointer bg-blue-500 hover:bg-blue-400 rounded-md text-white"
         >
@@ -151,7 +153,7 @@ const Header: FC<Props> = ({ totalPosts, onCreatePost }) => {
             ></path>
           </svg>{" "}
           Create Post
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router";
 import { usePostContext } from "~/context/postContext";
 import { useUserContext } from "~/context/userContext";
 import supabase from "~/utils/supabase";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
 
 type Props = {
   closeModal: () => void;
@@ -90,7 +92,7 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
         ref={modalRef}
         className="bg-white w-full max-w-2xl p-6 rounded-2xl shadow-xl relative"
       >
-        <button
+        <Button
           onClick={closeModal}
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer"
         >
@@ -107,7 +109,7 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
               clipRule="evenodd"
             ></path>
           </svg>
-        </button>
+        </Button>
 
         <div className="flex items-center gap-2 mb-4">
           <div className="h-10 w-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
@@ -118,7 +120,7 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
           </span>
         </div>
 
-        <input
+        <Input
           ref={titleRef}
           type="text"
           placeholder="Title of your post"
@@ -132,7 +134,7 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
 
         <div className="mt-6 flex justify-end items-center gap-3">
           <label className="flex items-center gap-1 text-sm text-gray-600 cursor-pointer">
-            <input
+            <Input
               checked={createMore}
               onChange={toggleCreateMore}
               type="checkbox"
@@ -140,13 +142,13 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
             />
             Create more
           </label>
-          <button
+          <Button
             disabled={loading}
             onClick={handleSubmit}
             className="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm"
           >
             {loading ? "Submitting..." : "Submit Post"}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

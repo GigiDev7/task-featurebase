@@ -4,6 +4,7 @@ import { usePostContext } from "~/context/postContext";
 import supabase from "~/utils/supabase";
 import type { Post } from "~/utils/types";
 import Button from "../UI/Button";
+import Input from "../UI/Input";
 
 type Props = {
   post: Post;
@@ -78,19 +79,19 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
       }`}
     >
       <div className="flex items-center gap-4">
-        <input type="checkbox" />
+        <Input type="checkbox" />
         <span>{post.title}</span>
       </div>
 
       <div className="flex gap-16 items-center">
         {post.tag && (
-          <button
+          <Button
             className={`border-gray-300 border-[1px] rounded-md py-1 px-3 cursor-pointer hover:bg-gray-100 ${
               post.tag === "High Priority" ? "text-red-500" : "text-blue-500"
             }`}
           >
             {post.tag}
-          </button>
+          </Button>
         )}
 
         <div className="flex items-center gap-6">
@@ -101,9 +102,9 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
             </div>
           </span>
 
-          <button className="border-gray-300 border-[1px] rounded-md py-1 px-3 cursor-pointer hover:bg-gray-100 text-gray-700">
+          <Button className="border-gray-300 border-[1px] rounded-md py-1 px-3 cursor-pointer hover:bg-gray-100 text-gray-700">
             {post.board}
-          </button>
+          </Button>
         </div>
 
         <div className="relative w-32">
@@ -120,13 +121,13 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
           {openReview && (
             <div className="w-28 absolute flex flex-col gap-3 items-start bg-white z-50 top-10 rounded-md border-[1px] border-gray-300 py-3">
               {statuses.map((status) => (
-                <button
+                <Button
                   onClick={() => updatePostStatus(status)}
                   key={status}
                   className="cursor-pointer text-sm hover:bg-gray-300 w-full text-start pl-2 py-2"
                 >
                   {status}
-                </button>
+                </Button>
               ))}
             </div>
           )}

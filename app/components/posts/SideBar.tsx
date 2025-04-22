@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router";
+import Button from "../UI/Button";
 
 const SideBar = () => {
   const [isBoardsOpen, setIsBoardsOpen] = useState(false);
@@ -33,7 +34,7 @@ const SideBar = () => {
         <span className="text-sm text-gray-700">Statuses</span>
 
         <div className="mt-2">
-          <button
+          <Button
             onClick={() => setFilters("status", "In Review")}
             className="flex items-center text-sm cursor-pointer"
           >
@@ -54,11 +55,11 @@ const SideBar = () => {
               ></circle>
             </svg>{" "}
             Under Review
-          </button>
+          </Button>
         </div>
 
         <div>
-          <button
+          <Button
             onClick={() => setFilters("status", "Planned")}
             className="flex items-center text-sm cursor-pointer"
           >
@@ -86,11 +87,11 @@ const SideBar = () => {
               ></circle>
             </svg>
             Planned
-          </button>
+          </Button>
         </div>
 
         <div>
-          <button
+          <Button
             onClick={() => setFilters("status", "In Progress")}
             className="flex items-center text-sm cursor-pointer"
           >
@@ -113,11 +114,11 @@ const SideBar = () => {
               ></path>
             </svg>
             Active
-          </button>
+          </Button>
         </div>
 
         <div>
-          <button
+          <Button
             onClick={() => setFilters("status", "Completed")}
             className="flex items-center text-sm cursor-pointer"
           >
@@ -135,11 +136,11 @@ const SideBar = () => {
               ></path>
             </svg>
             Done
-          </button>
+          </Button>
         </div>
 
         <div>
-          <button
+          <Button
             onClick={() => setFilters("status", "Rejected")}
             className="flex items-center text-sm cursor-pointer"
           >
@@ -157,12 +158,12 @@ const SideBar = () => {
               ></path>
             </svg>
             Closed
-          </button>
+          </Button>
         </div>
 
         {searchParams.size > 0 && (
           <div>
-            <button
+            <Button
               onClick={clearFilters}
               className="flex items-center text-sm cursor-pointer"
             >
@@ -179,7 +180,7 @@ const SideBar = () => {
                 ></path>
               </svg>
               Reset all filters
-            </button>
+            </Button>
           </div>
         )}
 
@@ -187,7 +188,7 @@ const SideBar = () => {
           <span className="text-sm text-gray-700">Quick Filters</span>
 
           <div className="mt-2">
-            <button
+            <Button
               onClick={toggleBoards}
               className="flex items-center text-sm cursor-pointer gap-1"
             >
@@ -218,24 +219,24 @@ const SideBar = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </Button>
 
             <div
               className={`ml-6 mt-1 transition-all duration-500 overflow-hidden ${
                 isBoardsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <button
+              <Button
                 onClick={() => setFilters("board", "Feature Request")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 Feature Request
-              </button>
+              </Button>
             </div>
           </div>
 
           <div>
-            <button
+            <Button
               onClick={toggleTags}
               className="flex items-center text-sm cursor-pointer gap-1"
             >
@@ -269,25 +270,25 @@ const SideBar = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </button>
+            </Button>
 
             <div
               className={`ml-6 mt-1 flex flex-col gap-1 transition-all duration-500 overflow-hidden ${
                 isTagsOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
               }`}
             >
-              <button
+              <Button
                 onClick={() => setFilters("tag", "High Priority")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 High Priority
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => setFilters("tag", "Low Priority")}
                 className="flex items-center text-sm cursor-pointer gap-1"
               >
                 Low Priority
-              </button>
+              </Button>
             </div>
           </div>
         </div>
