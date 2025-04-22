@@ -1,4 +1,3 @@
-import { clear } from "console";
 import { useEffect, useRef, useState, type FC } from "react";
 import { useSearchParams } from "react-router";
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router";
 import { usePostContext } from "~/context/postContext";
 import { useUserContext } from "~/context/userContext";
 import supabase from "~/utils/supabase";
@@ -10,9 +11,16 @@ type Props = {
 
 export default function AddPostModal({ closeModal, isOpen }: Props) {
   const [createMore, setCreateMore] = useState(false);
-  const { setPosts, setError, setLoading, loading, setShowSuccessFeedback } =
-    usePostContext();
+  const {
+    setPosts,
+    setError,
+    setLoading,
+    loading,
+    setShowSuccessFeedback,
+    fetchPosts,
+  } = usePostContext();
   const { user } = useUserContext();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const modalRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
@@ -61,19 +69,10 @@ export default function AddPostModal({ closeModal, isOpen }: Props) {
       return;
     }
 
-    const { data, error: postsError } = await supabase
-      .from("posts")
-      .select("*, createdBy (*)");
-
-    if (postsError) {
-      setError(postsError.message);
-      setLoading(false);
-      return;
-    }
+    await fetchPosts(searchParams);
 
     titleRef.current!.value = "";
     descriptionRef.current!.value = "";
-    setPosts(data);
     setLoading(false);
     setShowSuccessFeedback(true);
     if (!createMore) {

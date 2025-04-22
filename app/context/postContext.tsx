@@ -18,6 +18,7 @@ const PostContext = createContext<{
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   showSuccessFeedback: boolean;
   setShowSuccessFeedback: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchPosts: (params: URLSearchParams) => Promise<void>;
 }>({
   posts: [],
   error: null,
@@ -27,6 +28,7 @@ const PostContext = createContext<{
   setError: () => {},
   showSuccessFeedback: false,
   setShowSuccessFeedback: () => {},
+  fetchPosts: async () => {},
 });
 
 export const PostContextProvider = ({
@@ -57,41 +59,48 @@ export const PostContextProvider = ({
 
   useEffect(() => {
     (async () => {
-      let query = supabase.from("posts").select("*, createdBy (*)");
-
-      const status = searchParams.get("status");
-      const board = searchParams.get("board");
-      const tag = searchParams.get("tag");
-      const q = searchParams.get("q");
-
-      if (status) {
-        query = query.eq("status", status);
-      }
-      if (board) {
-        query = query.eq("board", board);
-      }
-      if (tag) {
-        query = query.eq("tag", tag);
-      }
-      if (q) {
-        query = query.ilike("title", `%${q}%`);
-      }
-
-      setLoading(true);
-
-      const { data, error, count } = await query;
-
-      if (error) {
-        setError(error.message);
-      }
-
-      if (data) {
-        setPosts(data);
-      }
-
-      setLoading(false);
+      await fetchPosts(searchParams);
     })();
   }, [searchParams]);
+
+  async function fetchPosts(params: URLSearchParams) {
+    let query = supabase
+      .from("posts")
+      .select("*, createdBy (*)")
+      .order("created_at", { ascending: true });
+
+    const status = searchParams.get("status");
+    const board = searchParams.get("board");
+    const tag = searchParams.get("tag");
+    const q = searchParams.get("q");
+
+    if (status) {
+      query = query.eq("status", status);
+    }
+    if (board) {
+      query = query.eq("board", board);
+    }
+    if (tag) {
+      query = query.eq("tag", tag);
+    }
+    if (q) {
+      query = query.ilike("title", `%${q}%`);
+    }
+
+    setLoading(true);
+
+    const { data, error, count } = await query;
+
+    if (error) {
+      setError(error.message);
+    }
+
+    if (data) {
+      setPosts(data);
+    }
+
+    setLoading(false);
+  }
 
   const value = useMemo(() => {
     return {
@@ -103,6 +112,7 @@ export const PostContextProvider = ({
       setPosts,
       showSuccessFeedback,
       setShowSuccessFeedback,
+      fetchPosts,
     };
   }, [posts, loading, error, showSuccessFeedback]);
 
