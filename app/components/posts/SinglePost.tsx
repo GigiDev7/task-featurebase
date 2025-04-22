@@ -72,8 +72,8 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
   }
 
   return (
-    <Link
-      to={`/${post.id}`}
+    <div
+      onClick={() => navigate(`/${post.id}`)}
       className={`flex justify-between items-center py-4 px-6 cursor-pointer ${
         !isLast && "border-b-[1px] border-gray-300"
       }`}
@@ -133,7 +133,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
