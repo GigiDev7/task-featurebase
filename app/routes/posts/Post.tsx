@@ -10,6 +10,7 @@ import type { Post } from "~/utils/types";
 export default function PostModal() {
   const [post, setPost] = useState<null | Post>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const params = useParams();
@@ -17,6 +18,10 @@ export default function PostModal() {
   const { user } = useUserContext();
 
   const commentRef = useRef<HTMLTextAreaElement>(null);
+
+  function updatePost(post: Post) {
+    setPost(post);
+  }
 
   useEffect(() => {
     if (!id) return;
@@ -54,6 +59,8 @@ export default function PostModal() {
     const comment = commentRef.current?.value;
     if (!comment) return;
 
+    setLoading(true);
+
     const { error } = await supabase.from("comments").insert({
       content: comment,
       post_id: id,
@@ -67,6 +74,8 @@ export default function PostModal() {
         return;
       }
 
+      if (commentRef.current) commentRef.current.value = "";
+      setLoading(false);
       setPost(data);
     }
   }
@@ -109,8 +118,9 @@ export default function PostModal() {
                 className="w-full p-2 h-24 resize-none outline-none placeholder-gray-400"
               />
               <Button
+                disabled={loading}
                 onClick={handleAddComment}
-                className="w-10 flex justify-center rounded-md mb-2 mr-2 cursor-pointer p-2 bg-blue-500 hover:bg-blue-600"
+                className="disabled:opacity-60 w-10 flex justify-center rounded-md mb-2 mr-2 cursor-pointer p-2 bg-blue-500 hover:bg-blue-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +144,11 @@ export default function PostModal() {
                 {post.comments.length > 0 && (
                   <div className="flex flex-col gap-4">
                     {post.comments.map((comment) => (
-                      <Comment key={comment.id} comment={comment} />
+                      <Comment
+                        key={comment.id}
+                        comment={comment}
+                        updatePost={updatePost}
+                      />
                     ))}
                   </div>
                 )}
