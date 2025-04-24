@@ -56,7 +56,11 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
     "Rejected",
   ].filter((el) => el !== post.status);
 
-  async function updatePostStatus(status: string) {
+  async function updatePostStatus(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    status: string
+  ) {
+    e.stopPropagation();
     setLoading(true);
     setOpenReview(false);
     const { error } = await supabase
@@ -122,7 +126,7 @@ const SinglePost: FC<Props> = ({ post, isLast }) => {
             <div className="w-28 absolute flex flex-col gap-3 items-start bg-white z-50 top-10 rounded-md border-[1px] border-gray-300 py-3">
               {statuses.map((status) => (
                 <Button
-                  onClick={() => updatePostStatus(status)}
+                  onClick={(e) => updatePostStatus(e, status)}
                   key={status}
                   className="cursor-pointer text-sm hover:bg-gray-300 w-full text-start pl-2 py-2"
                 >
